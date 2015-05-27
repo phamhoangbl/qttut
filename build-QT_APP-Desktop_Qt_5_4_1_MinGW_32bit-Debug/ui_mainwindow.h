@@ -34,6 +34,8 @@ public:
     QProgressBar *progressBar;
     QPushButton *myButton;
     QLabel *myLabel;
+    QPushButton *messageBox;
+    QPushButton *dialog;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -59,6 +61,12 @@ public:
         myLabel = new QLabel(centralWidget);
         myLabel->setObjectName(QStringLiteral("myLabel"));
         myLabel->setGeometry(QRect(120, 60, 47, 16));
+        messageBox = new QPushButton(centralWidget);
+        messageBox->setObjectName(QStringLiteral("messageBox"));
+        messageBox->setGeometry(QRect(230, 70, 75, 23));
+        dialog = new QPushButton(centralWidget);
+        dialog->setObjectName(QStringLiteral("dialog"));
+        dialog->setGeometry(QRect(280, 200, 75, 23));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -82,6 +90,8 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         myButton->setText(QApplication::translate("MainWindow", "Click me!", 0));
         myLabel->setText(QApplication::translate("MainWindow", "TextLabel", 0));
+        messageBox->setText(QApplication::translate("MainWindow", "Show Message", 0));
+        dialog->setText(QApplication::translate("MainWindow", "Show Dialog", 0));
     } // retranslateUi
 
 };

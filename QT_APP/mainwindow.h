@@ -18,6 +18,10 @@ public:
 private slots:
     void on_myButton_clicked();
 
+    void on_messageBox_clicked();
+
+    void on_dialog_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
