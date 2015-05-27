@@ -17,7 +17,9 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
@@ -28,8 +30,10 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralWidget;
-    QLabel *myLabel;
+    QSlider *horizontalSlider;
+    QProgressBar *progressBar;
     QPushButton *myButton;
+    QLabel *myLabel;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -38,19 +42,27 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(400, 300);
+        MainWindow->resize(933, 310);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        myLabel = new QLabel(centralWidget);
-        myLabel->setObjectName(QStringLiteral("myLabel"));
-        myLabel->setGeometry(QRect(150, 60, 47, 13));
+        horizontalSlider = new QSlider(centralWidget);
+        horizontalSlider->setObjectName(QStringLiteral("horizontalSlider"));
+        horizontalSlider->setGeometry(QRect(30, 110, 84, 16));
+        horizontalSlider->setOrientation(Qt::Horizontal);
+        progressBar = new QProgressBar(centralWidget);
+        progressBar->setObjectName(QStringLiteral("progressBar"));
+        progressBar->setGeometry(QRect(30, 150, 361, 21));
+        progressBar->setValue(24);
         myButton = new QPushButton(centralWidget);
         myButton->setObjectName(QStringLiteral("myButton"));
-        myButton->setGeometry(QRect(140, 110, 75, 23));
+        myButton->setGeometry(QRect(30, 60, 75, 23));
+        myLabel = new QLabel(centralWidget);
+        myLabel->setObjectName(QStringLiteral("myLabel"));
+        myLabel->setGeometry(QRect(120, 60, 47, 16));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 400, 18));
+        menuBar->setGeometry(QRect(0, 0, 933, 18));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -60,6 +72,7 @@ public:
         MainWindow->setStatusBar(statusBar);
 
         retranslateUi(MainWindow);
+        QObject::connect(horizontalSlider, SIGNAL(valueChanged(int)), progressBar, SLOT(setValue(int)));
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -67,8 +80,8 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
-        myLabel->setText(QApplication::translate("MainWindow", "TextLabel", 0));
         myButton->setText(QApplication::translate("MainWindow", "Click me!", 0));
+        myLabel->setText(QApplication::translate("MainWindow", "TextLabel", 0));
     } // retranslateUi
 
 };
