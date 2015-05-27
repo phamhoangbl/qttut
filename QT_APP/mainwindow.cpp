@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "QMessageBox"
-#include "secdialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -45,9 +44,10 @@ void MainWindow::on_messageBox_clicked()
 
 void MainWindow::on_dialog_clicked()
 {
-    SecDialog secDialog;
-    secDialog.setModal(true);
-    secDialog.exec();
-//    = new SecDialog();
-//    SecDialog.show();
+//    SecDialog secDialog;
+//    secDialog.setModal(true);
+//    secDialog.exec();
+    secDialog = new SecDialog(this);
+    secDialog->show();
+
 }
